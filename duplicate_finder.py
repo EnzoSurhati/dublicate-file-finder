@@ -5,7 +5,6 @@ import hashlib
 from collections import defaultdict
 from pathlib import Path
 
-
 def file_hash(path):
     """Read in small chunks so a large file doesn't fill up memory."""
     digest = hashlib.sha256()
@@ -13,7 +12,6 @@ def file_hash(path):
         for chunk in iter(lambda: file.read(65536), b""):
             digest.update(chunk)
     return digest.hexdigest()
-
 
 def find_duplicates(folder):
     """Return duplicate groups and warnings for files we couldn't read."""
@@ -54,7 +52,6 @@ def find_duplicates(folder):
             if len(matching_paths) > 1:
                 duplicates.append((size, sorted(matching_paths)))
     return duplicates, warnings
-
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
